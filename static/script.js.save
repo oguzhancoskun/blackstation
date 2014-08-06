@@ -1,0 +1,94 @@
+ window.onload=function what(){
+
+                                var audio= document.getElementById('audio');
+                                var listm=[];
+                                var namex=[];
+                                {% for m in musicx %}
+                                        listm.push("{{m}}");
+                                {% endfor %}
+
+                                {% for n in namex %}
+                                        namex.push("{{n}}");
+                                {% endfor %}
+
+                                var first = Math.floor(Math.random()*listm.length);
+
+                                var ptag= document.getElementById('p1');
+                                ptag.innerHTML=namex[first].toUpperCase();
+
+                                audio.setAttribute('src',listm[first]);
+                                audio.play();
+
+                                len = listm.length;
+                                audio.addEventListener('ended',function()
+                                        {
+                                                var rnd = Math.floor(Math.random()*listm.length);
+
+                                                this.src=listm[rnd];
+                                                ptag.innerHTML=namex[rnd].toUpperCase();
+
+						audio.setAttribute('src',listm[first]);
+
+                                len = listm.length;
+                                audio.addEventListener('ended',function()
+                                        {
+                                                var rnd = Math.floor(Math.random()*listm.length);
+
+                                                this.src=listm[rnd];
+                                                ptag.innerHTML=namex[rnd].toUpperCase();
+                                                this.play();
+
+                                        });
+
+
+                                 $(document).ready(function() {
+                                 $('body').css('background','url({%static "tupac.jpg"%}) no-repeat center center fixed');
+                                });
+                                };
+
+                                        function fch(){
+                                        var sound=new Audio('{% static  "change.mp3"%}');
+                                        var audio=document.getElementById('audio');
+                                        audio.pause();
+                                        sound.play();
+
+                                        setTimeout(function(){
+
+					 var listm=[];
+                                                var namex=[];
+                                                {% for m in musicx %}
+                                                listm.push("{{m}}");
+                                                {% endfor %}
+
+                                                {% for n in namex %}
+                                                namex.push("{{n}}");
+                                                 {% endfor %}
+
+                                                var first = Math.floor(Math.random()*listm.length);
+
+                                                var ptag= document.getElementById('p1');
+                                                  ptag.innerHTML=namex[first].toUpperCase();
+
+                                                  audio.setAttribute('src',listm[first]);
+                                                 audio.play();
+
+                                                },3000);
+                                       }
+
+                                var sec=0, min=0;
+
+				 function time(){
+
+                                if(sec<59) sec++;
+
+                                else{
+                                        sec=0;
+                                        min++;
+                                        }
+                                        $('#time').html(min+":"+sec);
+                                        }
+                        $(document).ready(function(){
+                                        $('#time').html("0:0");
+                                        setInterval(time,1000);
+                                });
+

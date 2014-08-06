@@ -1,0 +1,304 @@
+<html>
+	
+		<head>
+
+			 <link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>		
+			 <link href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet" type="text/css">
+			 {%load staticfiles%}
+			 
+       <!--shake effect-->			 
+
+       <script src="{%static 'jquery.js'%}"></script> 
+       <script src="{%static 'js/jshaker.js'%}"></script>	
+       <script src="{%static 'js/jquery-1.4.2.min.js'%}"></script>
+      
+			 <link rel='stylesheet' type='text/css' href='{% static "style.css" %}'/>
+
+			 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>				
+			
+			 <script src="{%static 'js/support/jquery-1.6.2.min.js'%}"></script>
+			 <script src="{%static 'js/spectrum.js'%}"></script>
+  			 <script src="{%static 'js/remoteaudioplayer.js'%}"></script>
+
+  			 <link type="text/css" href="{%static 'css/style.css'%}" rel="Stylesheet" />
+
+			 <title>Black Station</title>		
+
+			 <script>
+				/*
+				var sec=0, min=0;
+				var likecount=0;				
+
+				window.onload=function what(){			
+
+
+				var audio= document.getElementById('audio');
+				var wave = document.getElementById('wavebox');
+				var fft = document.getElementById('fftbox');
+				
+
+				 $(document).ready(function() {
+                                 $('body').css('background','url({%static "tupac.jpg"%}) no-repeat center center fixed');
+				 $('div.fullscreen').css({width: screen.width+"px", height: screen.height-300+'px'});
+					
+				 	//size--
+				wave.style.width = screen.width+"px";
+				  wave.style.height =	screen.height*0.275+"px";	
+				  fft.style.width = screen.width+"px";
+				  fft.style.height =	screen.height*0.275+"px";		
+				 
+					
+					});
+			 	
+				
+				var listm=[];
+                                var namex=[];
+                                {% for m in musicx %}
+                                        listm.push("{{m}}");
+                                {% endfor %}
+
+                                {% for n in namex %}
+                                        namex.push("{{n}}");
+                                {% endfor %}
+
+                                var first = Math.floor(Math.random()*listm.length);
+				
+				var liked=document.getElementById('liked');
+				var eq=document.getElementById('eq');
+                                var ptag= document.getElementById('p1');
+                                ptag.innerHTML=namex[first].toUpperCase();
+
+                                audio.setAttribute('src',listm[first]);
+                                audio.play();
+
+                                len = listm.length;
+                                audio.addEventListener('ended',function()
+                                        {
+                                                var rnd = Math.floor(Math.random()*listm.length);
+
+                                                this.src=listm[rnd];
+                                                ptag.innerHTML=namex[rnd].toUpperCase();
+
+                                                audio.setAttribute('src',listm[first]);
+                                audio.play();
+
+                                len = listm.length;
+                                audio.addEventListener('ended',function()
+                                        {
+                                                var rnd = Math.floor(Math.random()*listm.length);
+
+                                                this.src=listm[rnd];
+                                                ptag.innerHTML=namex[rnd].toUpperCase();
+                                                this.play();
+						sec=0, min=0;					
+					       time();
+
+                                        });
+
+					}); 
+
+				}
+
+				 function like(){ 
+					likecount++;
+					liked.innerHTML='LIKE +'+likecount;
+					
+					}		
+					
+
+				  function stop(){
+					if(audio.paused){audio.play(); eq.innerHTML='PAUSE';}
+					else {audio.pause(); eq.innerHTML='PLAY';}
+
+					}				
+
+	
+				  function fch(){
+
+					var sound=new Audio('{% static  "change.mp3"%}');
+                                        var audio=document.getElementById('audio');
+                                        audio.pause();
+                                        sound.play();
+					
+                                        setTimeout(function(){
+
+                                         var listm=[];
+                                                var namex=[];
+                                                {% for m in musicx %}
+                                                listm.push("{{m}}");
+                                                {% endfor %}
+
+                                                {% for n in namex %}
+                                                namex.push("{{n}}");
+                                                 {% endfor %}
+
+                                                var first = Math.floor(Math.random()*listm.length);
+
+                                                var ptag= document.getElementById('p1');
+                                                  ptag.innerHTML=namex[first].toUpperCase();
+
+                                                  audio.setAttribute('src',listm[first]);
+                                                 audio.play();
+						        },3000);
+						
+						sec=0, min=0;
+						time();
+                                       }
+        
+
+                                 function time(){
+				
+                                if(sec<59) sec++;
+
+                                else{
+                                        sec=0;
+                                        min++;
+                                        }
+                                        $('#time').html(min+":"+sec);
+                                        }
+                        $(document).ready(function(){
+                                        $('#time').html("0:0");
+                                        setInterval(time,1000);
+                                });*/
+
+			</script>
+
+			<script>
+var context;
+
+var frequencybox;
+var wavebox;
+var audio;
+
+
+function initialize() {
+
+  var wave = document.getElementById('wavebox');
+  var fft = document.getElementById('fftbox');
+				
+  $(document).ready(function() {
+  $('body').css('background','url({%static "tupac.jpg"%}) no-repeat center center fixed');
+  $('div.fullscreen').css({width: screen.width+"px", height: screen.height-300+'px'});
+					
+  wave.style.width = screen.width+"px";
+  wave.style.height =	screen.height*0.275+"px";	
+  fft.style.width = screen.width+"px";
+  fft.style.height =	screen.height*0.275+"px";			 
+		
+		});
+
+
+  	var listm=[];
+    var namex=[];
+    {% for m in musicx %}
+            listm.push("{{m}}");
+    {% endfor %}
+
+    {% for n in namex %}
+            namex.push("{{n}}");
+    {% endfor %}
+
+    var first = Math.floor(Math.random()*listm.length);
+
+	var liked=document.getElementById('liked');
+	var eq=document.getElementById('eq');
+    var ptag= document.getElementById('p1');
+    ptag.innerHTML=namex[first].toUpperCase();
+
+
+  context = new webkitAudioContext();
+
+  // Setup frequency domain graph
+  frequencybox = new SpectrumBox(2048, 30, "fftbox", context);
+  frequencybox.setValidPoints(500);
+  frequencybox.getCanvasContext().fillStyle = "orange";
+
+  // Setup time domain graph
+  wavebox = new SpectrumBox(2048, 1000, "wavebox", context);
+  wavebox.setType(SpectrumBox.Types.TIME);
+  wavebox.getCanvasContext().fillStyle = "rgb(95, 140, 168)";
+	
+  // Load MP3
+  audio = new RemoteAudioPlayer(context, listm[first]);
+
+  audio.load(function() {
+   
+  var source = audio.getSource();
+  var wavenode = wavebox.getAudioNode();
+  var frequencynode = frequencybox.getAudioNode();
+
+  // Route audio and graphs
+  source.connect(frequencynode);
+  frequencynode.connect(wavenode)
+  wavenode.connect(context.destination);
+
+  // Play audio
+  audio.reload();
+  source.noteOn(0);
+
+  // Enable graphs
+  wavebox.enable();
+  frequencybox.enable();
+
+  });
+
+}
+
+function stop() {
+  // Disable graphs
+  wavebox.disable();
+  frequencybox.disable();
+  audio.getSource().disconnect();
+
+}
+
+		$(function() { initialize(); });
+
+		function black(){stop(); initialize(); }
+
+		</script>
+
+											
+    </head>
+		
+		<body>	
+			<div class='fullscreen'>		
+				<!--<audio id='audio'></audio>-->
+			
+			<center>
+			<div class='midpoint'>
+				<div class='sticker'>
+         <marquee behavior='scroll' scrollamount='3' direction='left' class='art' id='p1'></marquee>
+                                </div>				
+				
+				<div class='timer'>
+					<p class='art' id='time'></p>
+				</div>
+
+					<div class='timer'><p id='liked' class='mapp'>LIKE<p></div>
+					<div class='timer'><p id='eq' class='mapp'><p></div>
+					<div class='timer'><p class='mapp'>SHARE<p></div>
+
+				<div class="timer">
+					<p class='mapp'>TOTAL {{count}}</p>
+				</div>
+
+                                <div class='shaked' onclick='black()' id='toggle'>
+                                      <!-- <p class='art'>SHAKE</p>-->
+                                </div>	
+			</div>
+		</center>
+		</div>
+
+  <div id="wrapper">
+    
+    <div class="boxes">
+      <div id="canvasbox">
+        <canvas id="fftbox" width=1366 height=720></canvas>
+        <canvas id="wavebox" width=1366 height=720></canvas>
+      </div>
+    </div>
+
+
+		</body>
+	</html>
