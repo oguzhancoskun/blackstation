@@ -12,7 +12,7 @@ from models import Toplist
 
 def home(request):
 
-        client = soundcloud.Client(client_id='0c7ba7f850fd26aa4b6c0efc42e4838b')
+        client = soundcloud.Client(client_id=[soundcloud_api_key])
 
 	musicx=[]
 	namex=[]
